@@ -12,7 +12,7 @@ void main() {
 
       for (int i = 0; i < 5; i++) {
         await tester.tap(find.byIcon(Icons.plus_one));
-        await Future.delayed(const Duration(seconds: 5));
+        await Future.delayed(const Duration(seconds: 3));
       }
       await tester.pumpAndSettle();
 
@@ -23,15 +23,15 @@ void main() {
       (WidgetTester tester) async {
     app.main();
     await tester.pumpAndSettle();
-    
-    var titulo = find.byKey(const Key('titulo')).evaluate().single.widget as Text;
-    expect(titulo.data, equals("Home"));
+
+    var title = find.byKey(const Key('titulo')).evaluate().single.widget as Text;
+    expect(title.data, equals("Home"));
 
     await tester.enterText(find.byKey(const Key('tituloInput')), 'Home Page');
     await tester.pumpAndSettle();
-    await Future.delayed(const Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 3));
 
-    titulo = find.byKey(const Key('titulo')).evaluate().single.widget as Text;
-    expect(titulo.data, equals('Home Page'));
+    title = find.byKey(const Key('titulo')).evaluate().single.widget as Text;
+    expect(title.data, equals('Home Page'));
   });
 }
