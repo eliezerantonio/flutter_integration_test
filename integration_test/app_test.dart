@@ -19,4 +19,19 @@ void main() {
       expect(find.text("5"), findsOneWidget);
     });
   });
+  testWidgets('Escreva no campo de texto para alterar o titulo da pagina',
+      (WidgetTester tester) async {
+    app.main();
+    await tester.pumpAndSettle();
+    
+    var titulo = find.byKey(const Key('titulo')).evaluate().single.widget as Text;
+    expect(titulo.data, equals("Home"));
+
+    await tester.enterText(find.byKey(const Key('tituloInput')), 'Home Page');
+    await tester.pumpAndSettle();
+    await Future.delayed(const Duration(seconds: 2));
+
+    titulo = find.byKey(const Key('titulo')).evaluate().single.widget as Text;
+    expect(titulo.data, equals('Home Page'));
+  });
 }
